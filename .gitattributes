@@ -1,0 +1,6 @@
+/cosmo                    export-ignore
+/.gitignore               export-ignore
+/.gitattributes           export-ignore
+/tests                    export-ignore
+/phpunit.xml              export-ignore
+/.env.example             export-ignore
