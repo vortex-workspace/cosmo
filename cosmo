@@ -1,0 +1,10 @@
+<?php
+
+use Stellar\Boot\Application;
+use Stellar\Cosmo\Cosmo;
+
+require_once __DIR__ . '/vendor/autoload.php';
+
+Application::build(__DIR__, __DIR__ . '/src');
+
+Cosmo::boot();
