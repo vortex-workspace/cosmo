@@ -31,7 +31,7 @@ class Argument extends Parameter
         return [
             $this->name,
             $this->description,
-            $this->mode->value,
+            $this->mode?->value,
             $this->default,
             $this->suggested_values,
         ];

@@ -34,7 +34,7 @@ class Option extends Parameter
             $this->name,
             $this->shortcuts,
             $this->description,
-            $this->mode->value,
+            $this->mode?->value,
             $this->default,
             $this->suggested_values,
         ];
