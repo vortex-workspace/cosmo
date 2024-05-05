@@ -3,9 +3,9 @@
 namespace Cosmo;
 
 use Closure;
-use Stellar\Cosmo\Option\Enums\OptionMode;
+use Cosmo\Option\Enums\OptionMode;
 
-abstract class Option extends Parameter
+class Option extends Parameter
 {
     /**
      * @param string $name
@@ -33,8 +33,8 @@ abstract class Option extends Parameter
         return [
             $this->name,
             $this->shortcuts,
+            $this->mode?->value,
             $this->description,
-            $this->mode->value,
             $this->default,
             $this->suggested_values,
         ];

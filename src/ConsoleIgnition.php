@@ -6,7 +6,7 @@ use Exception;
 use Stellar\Boot\Application;
 use Symfony\Component\Console\Application as SymfonyApplication;
 
-class Cosmo
+class ConsoleIgnition
 {
     private array $commands = [];
     private SymfonyApplication $symfonyApplication;
@@ -36,5 +36,10 @@ class Cosmo
                 $this->symfonyApplication->add(new $command);
             }
         }
+    }
+
+    public function getCommands(): array
+    {
+        return $this->commands;
     }
 }

@@ -3,9 +3,9 @@
 namespace Cosmo;
 
 use Closure;
-use Stellar\Cosmo\Argument\Enums\ArgumentMode;
+use Cosmo\Argument\Enums\ArgumentMode;
 
-abstract class Argument extends Parameter
+class Argument extends Parameter
 {
     /**
      * @param string $name
@@ -30,8 +30,8 @@ abstract class Argument extends Parameter
     {
         return [
             $this->name,
+            $this->mode?->value,
             $this->description,
-            $this->mode->value,
             $this->default,
             $this->suggested_values,
         ];
