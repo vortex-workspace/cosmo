@@ -2,17 +2,16 @@
 
 namespace Cosmo\Commands;
 
+use Cosmo\Command;
 use Cosmo\Option;
-use Stellar\Cosmo\Command;
-use Stellar\Cosmo\Command\Enums\CommandReturnStatus;
-use Stellar\Navigation\File;
+use Cosmo\Command\Enums\CommandResponse;
 
 class PublishCosmo extends Command
 {
-    protected function handle(): CommandReturnStatus
+    protected function handle(): CommandResponse
     {
 //        File::copy()
-        return CommandReturnStatus::SUCCESS;
+        return CommandResponse::SUCCESS;
     }
 
     protected function configure(): void

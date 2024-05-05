@@ -3,7 +3,7 @@
 namespace Cosmo;
 
 use Closure;
-use Stellar\Cosmo\Argument\Enums\ArgumentMode;
+use Cosmo\Argument\Enums\ArgumentMode;
 
 abstract class Argument extends Parameter
 {

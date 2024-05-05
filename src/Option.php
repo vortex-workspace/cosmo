@@ -3,7 +3,7 @@
 namespace Cosmo;
 
 use Closure;
-use Stellar\Cosmo\Option\Enums\OptionMode;
+use Cosmo\Option\Enums\OptionMode;
 
 abstract class Option extends Parameter
 {
