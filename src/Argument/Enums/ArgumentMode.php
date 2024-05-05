@@ -6,7 +6,7 @@ use Symfony\Component\Console\Input\InputArgument;
 
 enum ArgumentMode: int
 {
-    case Required = InputArgument::REQUIRED;
-    case Optional = InputArgument::OPTIONAL;
-    case IsArray = InputArgument::IS_ARRAY;
+    case Required = 1;
+    case Optional = 2;
+    case IsArray = 4;
 }

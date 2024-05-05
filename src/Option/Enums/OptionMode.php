@@ -6,9 +6,9 @@ use Symfony\Component\Console\Input\InputOption;
 
 enum OptionMode: int
 {
-    case None = InputOption::VALUE_NONE;
-    case Required = InputOption::VALUE_REQUIRED;
-    case Optional = InputOption::VALUE_OPTIONAL;
-    case IsArray = InputOption::VALUE_IS_ARRAY;
-    case Negatable = InputOption::VALUE_NEGATABLE;
+    case None = 1;
+    case Required = 2;
+    case Optional = 4;
+    case IsArray = 8;
+    case Negatable = 16;
 }
