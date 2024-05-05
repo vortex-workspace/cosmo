@@ -5,7 +5,7 @@ namespace Cosmo;
 use Closure;
 use Cosmo\Option\Enums\OptionMode;
 
-abstract class Option extends Parameter
+class Option extends Parameter
 {
     /**
      * @param string $name

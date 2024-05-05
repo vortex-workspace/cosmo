@@ -5,7 +5,7 @@ namespace Cosmo;
 use Closure;
 use Cosmo\Argument\Enums\ArgumentMode;
 
-abstract class Argument extends Parameter
+class Argument extends Parameter
 {
     /**
      * @param string $name
