@@ -50,9 +50,7 @@ abstract class Command extends SymfonyCommand implements CommandInterface
 
     public function __construct(?string $name = null)
     {
-        if ($name === null) {
-            $this->setName($this->name());
-        }
+        parent::__construct($name ?? $this->name());
 
         if (!static::can(Application::getInstance()) || !static::canSee(Application::getInstance())) {
             $this->setHidden();
@@ -65,8 +63,6 @@ abstract class Command extends SymfonyCommand implements CommandInterface
         foreach ($this->options() as $option) {
             $this->registerParameterByType($option, false);
         }
-
-        parent::__construct($name);
     }
 
     /**
