@@ -2,7 +2,7 @@
 
 namespace Cosmo;
 
-use Cosmo\Commands\PublishCosmo;
+use Cosmo\Commands\CosmoShell;
 use Stellar\Provider;
 
 class CosmoProvider extends Provider
@@ -12,7 +12,7 @@ class CosmoProvider extends Provider
     public static function commands(): array
     {
         return [
-            PublishCosmo::class,
+            CosmoShell::class,
         ];
     }
 

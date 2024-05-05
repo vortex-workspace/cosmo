@@ -37,4 +37,9 @@ class ConsoleIgnition
             }
         }
     }
+
+    public function getCommands(): array
+    {
+        return $this->commands;
+    }
 }
