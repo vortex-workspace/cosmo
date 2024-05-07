@@ -2,7 +2,7 @@
 
 namespace Cosmo\Themes\Default\Concerns;
 
-use Laravel\Prompts\Prompt;
+use Cosmo\Prompt;
 use Stellar\Facades\Collection;
 
 trait DrawsBoxes

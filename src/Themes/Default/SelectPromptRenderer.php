@@ -2,7 +2,9 @@
 
 namespace Cosmo\Themes\Default;
 
+use Cosmo\SelectPrompt;
 use Cosmo\Themes\Contracts\Scrolling;
+use Stellar\Facades\Collection;
 
 class SelectPromptRenderer extends Renderer implements Scrolling
 {
@@ -58,7 +60,7 @@ class SelectPromptRenderer extends Renderer implements Scrolling
     protected function renderOptions(SelectPrompt $prompt): string
     {
         return $this->scrollbar(
-            collect($prompt->visible())
+            Collection::from($prompt->visible())
                 ->map(fn ($label) => $this->truncate($label, $prompt->terminal()->cols() - 12))
                 ->map(function ($label, $key) use ($prompt) {
                     $index = array_search($key, array_keys($prompt->options));
