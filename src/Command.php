@@ -19,6 +19,7 @@ use Cosmo\Command\OutputStyles\YellowBkg;
 use Cosmo\Command\Traits\Bells;
 use Cosmo\Command\Traits\Blocks;
 use Cosmo\Command\Traits\Defaults;
+use Cosmo\Command\Traits\Inputs;
 use Cosmo\Command\Traits\Permissions;
 use Cosmo\Command\Traits\Rows;
 use Cosmo\Command\Traits\Write;
@@ -34,12 +35,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class Command extends SymfonyCommand implements CommandInterface
 {
-    use Bells;
-    use Blocks;
-    use Defaults;
-    use Permissions;
-    use Rows;
-    use Write;
+    use Bells, Blocks, Defaults, Inputs, Permissions, Rows, Write;
 
     protected InputInterface $input;
     protected OutputInterface $output;
