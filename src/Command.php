@@ -106,6 +106,7 @@ abstract class Command extends SymfonyCommand implements CommandInterface
 
     private function endCommand(CommandResponse $status): void
     {
+        $this->breakLine();
         $this->writeCommandEnd($status);
     }
 
@@ -122,6 +123,7 @@ abstract class Command extends SymfonyCommand implements CommandInterface
         $this->output = $output;
         $this->loadStyles();
         $this->writeCommandStart();
+        $this->breakLine();
     }
 
     /**
