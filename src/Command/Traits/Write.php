@@ -133,9 +133,9 @@ trait Write
     private function writeCommandStart(): void
     {
         $this->brightBlueBlock($this->getName(), options: [ConsoleStyleOption::Bold], large_block: false, break_line: false);
-        $this->brightMagentaBlock(
+        $this->brightCyanBlock(
             'Cosmo',
-            ConsoleStyleColor::White,
+            ConsoleStyleColor::Black,
             [ConsoleStyleOption::Bold],
             false
         );
