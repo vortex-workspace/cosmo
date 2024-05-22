@@ -6,6 +6,7 @@ use Cosmo\Command;
 use Cosmo\Command\Enums\CommandResponse;
 use Psy\Configuration;
 use Psy\Shell;
+use Stellar\Boot\Application;
 
 class CosmoShell extends Command
 {
@@ -37,5 +38,10 @@ class CosmoShell extends Command
     protected function options(): array
     {
         return [];
+    }
+
+    public static function can(Application $application): bool
+    {
+        return env('APP_ENV') === 'local';
     }
 }
