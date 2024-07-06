@@ -39,9 +39,4 @@ class CosmoShell extends Command
     {
         return [];
     }
-
-    public static function can(Application $application): bool
-    {
-        return env('APP_ENV') === 'local';
-    }
 }

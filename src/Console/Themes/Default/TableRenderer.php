@@ -4,6 +4,7 @@ namespace Cosmo\Console\Themes\Default;
 
 use Cosmo\Console\Inputs\Table;
 use Cosmo\Console\Output\BufferedConsoleOutput;
+use Stellar\Facades\Collection;
 use Symfony\Component\Console\Helper\Table as SymfonyTable;
 use Symfony\Component\Console\Helper\TableStyle;
 
@@ -34,7 +35,7 @@ class TableRenderer extends Renderer
             ->setStyle($tableStyle)
             ->render();
 
-        collect(explode(PHP_EOL, trim($buffered->content(), PHP_EOL)))
+        Collection::from(explode(PHP_EOL, trim($buffered->content(), PHP_EOL)))
             ->each(fn ($line) => $this->line(' '.$line));
 
         return $this;
