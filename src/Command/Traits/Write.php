@@ -25,15 +25,15 @@ trait Write
     {
         switch ($result) {
             case CommandResponse::SUCCESS:
-                $this->blueBlock($this->getName(), options: [ConsoleStyleOption::Bold], large_block: false, break_line: false);
+                $this->brightBlueBlock($this->getName(), options: [ConsoleStyleOption::Bold], large_block: false, break_line: false);
                 $this->successBlock('Success', options: [ConsoleStyleOption::Bold], large_block: false, break_line: false);
                 break;
             case CommandResponse::FAILED:
-                $this->blueBlock($this->getName(), options: [ConsoleStyleOption::Bold], large_block: false, break_line: false);
+                $this->brightBlueBlock($this->getName(), options: [ConsoleStyleOption::Bold], large_block: false, break_line: false);
                 $this->failBlock('Failed', options: [ConsoleStyleOption::Bold], large_block: false, break_line: false);
                 break;
             case CommandResponse::INVALID:
-                $this->blueBlock($this->getName(), options: [ConsoleStyleOption::Bold], large_block: false, break_line: false);
+                $this->brightBlueBlock($this->getName(), options: [ConsoleStyleOption::Bold], large_block: false, break_line: false);
                 $this->warningBlock('Warning', options: [ConsoleStyleOption::Bold], large_block: false, break_line: false);
                 break;
         }
@@ -132,10 +132,10 @@ trait Write
 
     private function writeCommandStart(): void
     {
-        $this->blueBlock($this->getName(), options: [ConsoleStyleOption::Bold], large_block: false, break_line: false);
+        $this->brightBlueBlock($this->getName(), options: [ConsoleStyleOption::Bold], large_block: false, break_line: false);
         $this->brightCyanBlock(
-            'Vortex',
-            ConsoleStyleColor::Gray,
+            'Cosmo',
+            ConsoleStyleColor::Black,
             [ConsoleStyleOption::Bold],
             false
         );
