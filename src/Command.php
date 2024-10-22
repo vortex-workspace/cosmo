@@ -2,32 +2,31 @@
 
 namespace Cosmo;
 
+use Core\Contracts\CommandInterface;
+use Cosmo\Command\Enums\CommandResponse;
+use Cosmo\Command\Enums\ConsoleStyleOption;
+use Cosmo\Command\Exceptions\InvalidOutputStyle;
+use Cosmo\Command\OutputStyle;
+use Cosmo\Command\OutputStyles\BlueBkg;
+use Cosmo\Command\OutputStyles\BrightBlueBkg;
+use Cosmo\Command\OutputStyles\BrightGreen;
+use Cosmo\Command\OutputStyles\Cyan;
+use Cosmo\Command\OutputStyles\Gray;
+use Cosmo\Command\OutputStyles\GreenBkg;
+use Cosmo\Command\OutputStyles\Red;
+use Cosmo\Command\OutputStyles\RedBkg;
+use Cosmo\Command\OutputStyles\YellowBkg;
+use Cosmo\Command\Traits\Bells;
+use Cosmo\Command\Traits\Blocks;
+use Cosmo\Command\Traits\Defaults;
+use Cosmo\Command\Traits\Permissions;
+use Cosmo\Command\Traits\Rows;
+use Cosmo\Command\Traits\Write;
 use Error;
 use Exception;
 use Stellar\Boot\Application;
-use Stellar\Core\Contracts\CommandInterface;
-use Stellar\Cosmo\Command\Enums\CommandReturnStatus;
-use Stellar\Cosmo\Command\Enums\ConsoleStyleOption;
-use Stellar\Cosmo\Command\Exceptions\InvalidOutputStyle;
-use Stellar\Cosmo\Command\OutputStyle;
-use Stellar\Cosmo\Command\OutputStyles\BlueBkg;
-use Stellar\Cosmo\Command\OutputStyles\BrightBlueBkg;
-use Stellar\Cosmo\Command\OutputStyles\BrightGreen;
-use Stellar\Cosmo\Command\OutputStyles\Cyan;
-use Stellar\Cosmo\Command\OutputStyles\Gray;
-use Stellar\Cosmo\Command\OutputStyles\GreenBkg;
-use Stellar\Cosmo\Command\OutputStyles\Red;
-use Stellar\Cosmo\Command\OutputStyles\RedBkg;
-use Stellar\Cosmo\Command\OutputStyles\YellowBkg;
-use Stellar\Cosmo\Command\Traits\Bells;
-use Stellar\Cosmo\Command\Traits\Blocks;
-use Stellar\Cosmo\Command\Traits\Defaults;
-use Stellar\Cosmo\Command\Traits\Permissions;
-use Stellar\Cosmo\Command\Traits\Rows;
-use Stellar\Cosmo\Command\Traits\Write;
-use Stellar\Settings\Enum\SettingKey;
+use Stellar\Setting;
 use Stellar\Settings\Exceptions\InvalidSettingException;
-use Stellar\Settings\Setting;
 use Symfony\Component\Console\Command\Command as SymfonyCommand;
 use Symfony\Component\Console\Formatter\OutputFormatterStyle;
 use Symfony\Component\Console\Input\InputInterface;
@@ -47,13 +46,11 @@ abstract class Command extends SymfonyCommand implements CommandInterface
 
     abstract protected function name(): string;
 
-    abstract protected function handle(): CommandReturnStatus;
+    abstract protected function handle(): CommandResponse;
 
     public function __construct(?string $name = null)
     {
-        if ($name === null) {
-            $this->setName($this->name());
-        }
+        parent::__construct($name ?? $this->name());
 
         if (!static::can(Application::getInstance()) || !static::canSee(Application::getInstance())) {
             $this->setHidden();
@@ -66,8 +63,6 @@ abstract class Command extends SymfonyCommand implements CommandInterface
         foreach ($this->options() as $option) {
             $this->registerParameterByType($option, false);
         }
-
-        parent::__construct($name);
     }
 
     /**
@@ -87,7 +82,7 @@ abstract class Command extends SymfonyCommand implements CommandInterface
      */
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $commandResult = CommandReturnStatus::FAILED;
+        $commandResult = CommandResponse::FAILED;
         $this->startCommand($input, $output);
 
         if (self::can(Application::getInstance()) && self::canRun(Application::getInstance())) {
@@ -113,7 +108,7 @@ abstract class Command extends SymfonyCommand implements CommandInterface
         return [];
     }
 
-    private function endCommand(CommandReturnStatus $status): void
+    private function endCommand(CommandResponse $status): void
     {
         $this->writeCommandEnd($status);
     }
@@ -162,7 +157,7 @@ abstract class Command extends SymfonyCommand implements CommandInterface
             $this->loadStyle($style);
         }
 
-        foreach (Setting::get(SettingKey::COSMO_STYLES->value, []) as $style) {
+        foreach (Setting::get(CosmoProvider::COSMO_SETTING, []) as $style) {
             $this->loadStyle($style);
         }
     }
