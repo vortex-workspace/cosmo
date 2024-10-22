@@ -2,6 +2,7 @@
 
 namespace Cosmo\Command\Traits;
 
+use Error;
 use Exception;
 use Cosmo\Command\Enums\ConsoleStyleColor;
 use Cosmo\Command\Enums\ConsoleStyleOption;
@@ -432,7 +433,7 @@ trait Blocks
         }
     }
 
-    private function exceptionBlock(Exception $exception): void
+    private function exceptionBlock(Exception|Error $exception): void
     {
         $this->breakLine();
         $this->failBlock($exception->getMessage());
